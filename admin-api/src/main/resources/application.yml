@@ -1,0 +1,24 @@
+sa:
+  jwt:
+    token:
+      header: X-Admin-Token
+      head: Bearer
+    secret: 4f1aaeeb0a76ac6033c5e61d8b5e3e6f
+    expire: 604800
+spring:
+  messages:
+    encoding: UTF-8
+  jpa:
+    show-sql: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sa
+    username: root
+    password: root
+server:
+  port: 8081
+logging:
+  level:
+    root:  info
+    org.springframework:  info
+    com.github.w4o.ticket:  info
