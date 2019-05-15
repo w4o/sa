@@ -2,6 +2,7 @@ package com.github.w4o.sa.component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.w4o.sa.commons.CommonResult;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -26,7 +27,9 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
         response.setContentType("application/json");
         String result;
         ObjectMapper objectMapper = new ObjectMapper();
-        if (authException instanceof UsernameNotFoundException) {
+        // 用户不存在和密码错误都提示【用户名或密码错误】
+        if (authException instanceof UsernameNotFoundException
+                || authException instanceof BadCredentialsException) {
             result = objectMapper.writeValueAsString(new CommonResult().failed(PASS_ERR, "用户名或密码错误"));
         } else {
             result = objectMapper.writeValueAsString(new CommonResult().failed(-1, "未授权？"));

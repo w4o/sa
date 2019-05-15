@@ -21,20 +21,11 @@ public class Properties {
 
     @Data
     public static class Jwt {
-
-        @NotNull
-        private Token token;
         @NotNull
         private String secret;
         @NotNull
         private Integer expire;
-
-        @Data
-        public static class Token {
-            @NotBlank
-            private String header;
-            @NotBlank
-            private String head;
-        }
+        @NotBlank
+        private String header;
     }
 }

@@ -27,6 +27,8 @@ public class Admin extends BaseEntity implements UserDetails {
     private String username;
     @Column(name = "password")
     private String password;
+    @Column(name = "avatar")
+    private String avatar;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

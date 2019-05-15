@@ -1,13 +1,14 @@
 package com.github.w4o.sa.component;
 
 import com.github.w4o.sa.config.Properties;
+import com.github.w4o.sa.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -24,9 +25,9 @@ import java.io.IOException;
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
     @Autowired
-    private Properties saProperties;
+    private Properties properties;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
@@ -34,10 +35,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain chain) throws ServletException, IOException {
-        String authHeader = request.getHeader(saProperties.getJwt().getToken().getHeader());
-        if (authHeader != null && authHeader.startsWith(saProperties.getJwt().getToken().getHead())) {
-            // The part after "Bearer "
-            String authToken = authHeader.substring(saProperties.getJwt().getToken().getHead().length());
+        String authToken = request.getHeader(properties.getJwt().getHeader());
+        if (!StringUtils.isEmpty(authToken)) {
             String username = jwtTokenUtil.getUserNameFromToken(authToken);
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);

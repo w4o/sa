@@ -1,9 +1,11 @@
 package com.github.w4o.sa.service.impl;
 
 import com.github.w4o.sa.component.JwtTokenUtil;
-import com.github.w4o.sa.config.Properties;
+import com.github.w4o.sa.domain.Admin;
+import com.github.w4o.sa.dto.AdminInfoResult;
 import com.github.w4o.sa.dto.LoginParam;
 import com.github.w4o.sa.dto.LoginResult;
+import com.github.w4o.sa.repository.AdminRepository;
 import com.github.w4o.sa.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -27,7 +29,7 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
-    private Properties properties;
+    private AdminRepository adminRepository;
 
     @Override
     public LoginResult login(LoginParam loginParam) {
@@ -39,7 +41,16 @@ public class AdminServiceImpl implements AdminService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtTokenUtil.generateToken(userDetails);
         // TODO 之后增加登陆时间和登陆日志
-        return new LoginResult(token, properties.getJwt().getToken().getHead());
+        return new LoginResult(token);
+    }
 
+    @Override
+    public AdminInfoResult getAdminInfo(String username) {
+        Admin admin = adminRepository.findByUsername(username);
+        AdminInfoResult result = new AdminInfoResult();
+        result.setUsername(username);
+        result.setAvatar(admin.getAvatar());
+        result.setPerms(new String[]{"*"});
+        return result;
     }
 }

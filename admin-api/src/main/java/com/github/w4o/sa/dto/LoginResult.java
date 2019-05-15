@@ -11,5 +11,4 @@ import lombok.Data;
 @AllArgsConstructor
 public class LoginResult {
     private String token;
-    private String tokenHead;
 }

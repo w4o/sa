@@ -8,9 +8,14 @@
       fit
       highlight-current-row
     >
+      <el-table-column align="center" label="No." width="95">
+        <template slot-scope="scope">
+          {{ scope.$index+1 }}
+        </template>
+      </el-table-column>
       <el-table-column align="center" label="ID" width="95">
         <template slot-scope="scope">
-          {{ scope.$index }}
+          {{ scope.row.id }}
         </template>
       </el-table-column>
       <el-table-column label="Title">
@@ -23,20 +28,20 @@
           <span>{{ scope.row.author }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Pageviews" width="110" align="center">
+      <el-table-column label="Views" width="110" align="center">
         <template slot-scope="scope">
-          {{ scope.row.pageviews }}
+          {{ scope.row.views }}
         </template>
       </el-table-column>
       <el-table-column class-name="status-col" label="Status" width="110" align="center">
         <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
+          <el-tag :type="scope.row.status | statusFilter">{{ formatStatus(scope.row.status) }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column align="center" prop="created_at" label="Display_time" width="200">
+      <el-table-column align="center" prop="created_time" label="创建时间" width="200">
         <template slot-scope="scope">
           <i class="el-icon-time" />
-          <span>{{ scope.row.display_time }}</span>
+          <span>{{ scope.row.createTime }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -60,17 +65,25 @@ export default {
   data() {
     return {
       list: null,
-      listLoading: true
+      listLoading: true,
+      statusMap: {
+        1: 'draft',
+        2: 'deleted',
+        3: 'published'
+      }
     }
   },
   created() {
     this.fetchData()
   },
   methods: {
+    formatStatus(status) {
+      return this.statusMap[status]
+    },
     fetchData() {
       this.listLoading = true
       getList().then(response => {
-        this.list = response.data.items
+        this.list = response.data.list
         this.listLoading = false
       })
     }
