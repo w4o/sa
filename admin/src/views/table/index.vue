@@ -4,7 +4,7 @@
     <div class="filter-container">
       <el-input v-model="listQuery.title" placeholder="Title" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
-        Search
+        搜索
       </el-button>
     </div>
 
@@ -54,7 +54,14 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.size" @pagination="fetchData" />
+    <pagination
+      v-show="total>0"
+      :total="total"
+      :page.sync="listQuery.page"
+      :limit.sync="listQuery.size"
+      :page-sizes="[5,10,15]"
+      @pagination="fetchData"
+    />
 
   </div>
 </template>
