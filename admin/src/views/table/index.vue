@@ -1,5 +1,13 @@
 <template>
   <div class="app-container">
+
+    <div class="filter-container">
+      <el-input v-model="listQuery.title" placeholder="Title" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
+        Search
+      </el-button>
+    </div>
+
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -45,13 +53,20 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.size" @pagination="fetchData" />
+
   </div>
 </template>
 
 <script>
 import { getList } from '@/api/table'
+import waves from '@/directive/waves'
+import Pagination from '@/components/Pagination'
 
 export default {
+  components: { Pagination },
+  directives: { waves },
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -65,11 +80,17 @@ export default {
   data() {
     return {
       list: null,
+      total: 0,
       listLoading: true,
       statusMap: {
         1: 'draft',
         2: 'deleted',
         3: 'published'
+      },
+      listQuery: {
+        title: undefined,
+        page: 1,
+        size: 5
       }
     }
   },
@@ -77,15 +98,20 @@ export default {
     this.fetchData()
   },
   methods: {
+    fetchData() {
+      this.listLoading = true
+      getList(this.listQuery).then(response => {
+        this.list = response.data.list
+        this.total = response.data.total
+        this.listLoading = false
+      })
+    },
     formatStatus(status) {
       return this.statusMap[status]
     },
-    fetchData() {
-      this.listLoading = true
-      getList().then(response => {
-        this.list = response.data.list
-        this.listLoading = false
-      })
+    handleFilter() {
+      this.listQuery.page = 1
+      this.fetchData()
     }
   }
 }

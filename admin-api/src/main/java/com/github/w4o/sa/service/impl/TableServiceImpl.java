@@ -25,7 +25,7 @@ public class TableServiceImpl implements TableService {
         Pageable pageable = PageRequest.of(page - 1, size);
         Page<TableList> result;
         if (!StringUtils.isEmpty(title)) {
-            result = tableListRepository.findTableListsByTitleLike(title, pageable);
+            result = tableListRepository.findTableListsByTitleLike("%" + title + "%", pageable);
         } else {
             result = tableListRepository.findAll(pageable);
         }

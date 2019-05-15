@@ -29,7 +29,7 @@ public class CommonResult {
     public CommonResult okPage(Page page) {
         this.code = 0;
         Map<String, Object> data = new HashMap<>(4);
-        data.put("total", page.getTotalPages());
+        data.put("total", page.getTotalElements());
         data.put("page", page.getNumber());
         data.put("size", page.getSize());
         data.put("list", page.getContent());
