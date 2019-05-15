@@ -22,12 +22,12 @@
 					"raw": "{\n\t\"username\":\"admin\",\n\t\"password\":\"123456\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8081/auth/login",
+					"raw": "http://{{HOST}}:{{PORT}}/auth/login",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{HOST}}"
 					],
-					"port": "8081",
+					"port": "{{PORT}}",
 					"path": [
 						"auth",
 						"login"
@@ -35,6 +35,142 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "/auth/logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Token",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTc5MDc5MDc0MDIsImV4cCI6MTU1ODUxMjcwN30.4liVwPqixmD4cli4RvzohsLvGjlxz8jwtm9YhZoYXBsa_8NVM8pPl_avJ1n2HrwBzvTdKxTmGWH2IqMYttsyXQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/auth/logout",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/auth/info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Token",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTc5MDc5MDc0MDIsImV4cCI6MTU1ODUxMjcwN30.4liVwPqixmD4cli4RvzohsLvGjlxz8jwtm9YhZoYXBsa_8NVM8pPl_avJ1n2HrwBzvTdKxTmGWH2IqMYttsyXQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/auth/info",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"auth",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/table/list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Token",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTc5MDc5MDc0MDIsImV4cCI6MTU1ODUxMjcwN30.4liVwPqixmD4cli4RvzohsLvGjlxz8jwtm9YhZoYXBsa_8NVM8pPl_avJ1n2HrwBzvTdKxTmGWH2IqMYttsyXQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/table/list?page=3&size=5",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"table",
+						"list"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "3"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "01647d93-9a00-4b34-be85-6a2e1619ca96",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c01fa136-503d-4304-b9e6-244a6dd346a0",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "b3b9838c-7b23-46c5-b364-68cdc3a2155c",
+			"key": "HOST",
+			"value": "localhost",
+			"type": "string"
+		},
+		{
+			"id": "fda10d9d-028d-461e-8d7d-1b5c2ab10400",
+			"key": "PORT",
+			"value": "8081",
+			"type": "string"
 		}
 	]
 }
