@@ -21,7 +21,7 @@ import java.util.List;
 @Table(name = "admin")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Admin extends BaseEntity implements UserDetails {
+public class Admin extends BaseEntity {
 
     @Column(name = "username")
     private String username;
@@ -30,41 +30,4 @@ public class Admin extends BaseEntity implements UserDetails {
     @Column(name = "avatar")
     private String avatar;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        List<GrantedAuthority> auths = new ArrayList<>();
-
-        return auths;
-    }
-
-    @Override
-    public String getPassword() {
-        return this.password;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }
