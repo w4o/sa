@@ -1,0 +1,176 @@
+{
+	"info": {
+		"_postman_id": "0ed20406-d831-4659-bbbf-2f234115b93b",
+		"name": "sa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/auth/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"admin\",\n\t\"password\":\"123456\"\n}"
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/auth/login",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/auth/logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Token",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTc5MDc5MDc0MDIsImV4cCI6MTU1ODUxMjcwN30.4liVwPqixmD4cli4RvzohsLvGjlxz8jwtm9YhZoYXBsa_8NVM8pPl_avJ1n2HrwBzvTdKxTmGWH2IqMYttsyXQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/auth/logout",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/auth/info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Token",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTc5MDc5MDc0MDIsImV4cCI6MTU1ODUxMjcwN30.4liVwPqixmD4cli4RvzohsLvGjlxz8jwtm9YhZoYXBsa_8NVM8pPl_avJ1n2HrwBzvTdKxTmGWH2IqMYttsyXQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/auth/info",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"auth",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/table/list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Token",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTc5MDc5MDc0MDIsImV4cCI6MTU1ODUxMjcwN30.4liVwPqixmD4cli4RvzohsLvGjlxz8jwtm9YhZoYXBsa_8NVM8pPl_avJ1n2HrwBzvTdKxTmGWH2IqMYttsyXQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/table/list?page=3&size=5",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"table",
+						"list"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "3"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "01647d93-9a00-4b34-be85-6a2e1619ca96",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c01fa136-503d-4304-b9e6-244a6dd346a0",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "36e23144-b58e-4a15-aeb9-66a8554201c6",
+			"key": "HOST",
+			"value": "localhost",
+			"type": "string"
+		},
+		{
+			"id": "d063bf67-daa5-405e-aa2b-5aa4b1bf9091",
+			"key": "PORT",
+			"value": "8081",
+			"type": "string"
+		}
+	]
+}
