@@ -11,7 +11,7 @@
  Target Server Version : 50644
  File Encoding         : 65001
 
- Date: 17/05/2019 14:57:57
+ Date: 17/05/2019 16:15:51
 */
 
 SET NAMES utf8mb4;
@@ -41,6 +41,30 @@ INSERT INTO `admin` VALUES (1, 'admin', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7I
 INSERT INTO `admin` VALUES (2, 'test1', '$2a$10$nzSNrbTeL0hRhtcnOX1eO.ciyS3MrAjvHPtTnyp6KkveIebns6pqO', NULL, 'test1 备注信息', NULL, NULL, 1);
 INSERT INTO `admin` VALUES (3, 'test2', '$2a$10$Taf3xdFbhLhgndKTq.MX.eRGphcfQm1A59yawQ17emNwl8AZpqWFu', NULL, 'test2 备注信息 备注信息修改', NULL, NULL, 1);
 INSERT INTO `admin` VALUES (4, 'test3', '$2a$10$VrAKmEa9uXg3PHqMO0thruso6o4f5zMs.iC7k8cIr91TAAGkq5Gc2', NULL, 'test3', '2019-05-17 06:27:52', NULL, 0);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for admin_log
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_log`;
+CREATE TABLE `admin_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `admin` varchar(20) DEFAULT NULL COMMENT '管理员',
+  `path` varchar(255) DEFAULT NULL COMMENT '请求地址',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `action` varchar(50) DEFAULT NULL COMMENT '动作',
+  `type` tinyint(1) DEFAULT NULL COMMENT '日志类型',
+  `result` varchar(200) DEFAULT NULL COMMENT '结果',
+  `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of admin_log
+-- ----------------------------
+BEGIN;
+INSERT INTO `admin_log` VALUES (1, 'admin', 'http://localhost:8081', '2019-05-17 07:51:06', '登出', 1, '成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `admin_log` VALUES (2, 'admin', 'http://localhost:8081', '2019-05-17 07:51:09', '登陆', 1, '成功', '0:0:0:0:0:0:0:1');
 COMMIT;
 
 -- ----------------------------

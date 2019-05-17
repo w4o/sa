@@ -285,6 +285,51 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "log",
+			"item": [
+				{
+					"name": "/log/list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Token",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTgwNzQ2MTUyMjcsImV4cCI6MTU1ODY3OTQxNX0.ubjsOQdLTfBydnELv4BrxHCl52ge64Brtj6qPHNNLnDX1piJVDHZW2vX-vHxDbyzNunLQ_O9z7iIjRipKVlW7g",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{HOST}}:{{PORT}}/log/list?page=1&size=10",
+							"protocol": "http",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"log",
+								"list"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
@@ -311,13 +356,13 @@
 	],
 	"variable": [
 		{
-			"id": "44acb1e2-331f-4c59-9037-268e08e5685f",
+			"id": "b38a899b-5a0f-40a8-93b4-74cbefd441f9",
 			"key": "HOST",
 			"value": "localhost",
 			"type": "string"
 		},
 		{
-			"id": "8d7da309-d5cc-4f33-8546-41ee06b97553",
+			"id": "e525d766-9a25-47ba-be1b-229f3163d1d9",
 			"key": "PORT",
 			"value": "8081",
 			"type": "string"
