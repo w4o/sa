@@ -1,5 +1,6 @@
 package com.github.w4o.sa.service.impl;
 
+import com.github.w4o.sa.component.AdminLogHelper;
 import com.github.w4o.sa.component.JwtTokenUtil;
 import com.github.w4o.sa.domain.Admin;
 import com.github.w4o.sa.dto.*;
@@ -37,16 +38,19 @@ public class AdminServiceImpl implements AdminService {
     private final JwtTokenUtil jwtTokenUtil;
     private final AdminRepository adminRepository;
     private final UserDetailsRepository userDetailsRepository;
+    private final AdminLogHelper adminLogHelper;
 
     @Autowired
     public AdminServiceImpl(PasswordEncoder passwordEncoder,
                             JwtTokenUtil jwtTokenUtil,
                             AdminRepository adminRepository,
-                            UserDetailsRepository userDetailsRepository) {
+                            UserDetailsRepository userDetailsRepository,
+                            AdminLogHelper adminLogHelper) {
         this.passwordEncoder = passwordEncoder;
         this.jwtTokenUtil = jwtTokenUtil;
         this.adminRepository = adminRepository;
         this.userDetailsRepository = userDetailsRepository;
+        this.adminLogHelper = adminLogHelper;
     }
 
     @Override
@@ -58,7 +62,8 @@ public class AdminServiceImpl implements AdminService {
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtTokenUtil.generateToken(userDetails);
-        // TODO 之后增加登陆时间和登陆日志
+        adminLogHelper.loginSucceed();
+        // TODO 之后增加登陆时间
         return new LoginResult(token);
     }
 
