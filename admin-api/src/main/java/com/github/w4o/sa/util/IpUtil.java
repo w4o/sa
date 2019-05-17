@@ -8,45 +8,13 @@ import java.net.UnknownHostException;
  * @author frank
  * @date 2019-05-17
  */
-public class HttpUtil {
-
-    private static final String HTTP = "http";
-
-    private static final String HTTPS = "https";
-
-    private static final int DEFAULT_SERVER_PORT = 80;
-
-    private static final int DEFAULT_SSL_SERVER_PORT = 443;
+public class IpUtil {
 
     private static final String DEFAULT_REMOTE_ADDR = "127.0.0.1";
 
     private static final String UNKNOWN_REMOTE_ADDR = "unknown";
 
     private static final char MULTIPLE_IP_DELIMITER = ',';
-
-    /**
-     * 获取请求basePath
-     *
-     * @param request HttpServletRequest 对象
-     * @return HttpServletRequest 对象 basePath
-     */
-    public static String getBasePath(HttpServletRequest request) {
-
-        StringBuilder basePath = new StringBuilder();
-        String scheme = request.getScheme();
-        String domain = request.getServerName();
-        int port = request.getServerPort();
-        basePath.append(scheme);
-        basePath.append("://");
-        basePath.append(domain);
-        if (HTTP.equalsIgnoreCase(scheme) && DEFAULT_SERVER_PORT != port) {
-            basePath.append(":").append(port);
-        } else if (HTTPS.equalsIgnoreCase(scheme) && port != DEFAULT_SSL_SERVER_PORT) {
-            basePath.append(":").append(port);
-        }
-        return basePath.toString();
-    }
-
 
     /**
      * 获取用户IP
