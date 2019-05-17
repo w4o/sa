@@ -78,6 +78,28 @@ export const constantRoutes = [
   },
 
   {
+    path: '/sys',
+    component: Layout,
+    redirect: '/sys/admin',
+    name: '系统管理',
+    meta: { title: '系统管理', icon: 'system' },
+    children: [
+      {
+        path: 'admin',
+        name: '管理员',
+        component: () => import('@/views/sys/admin'),
+        meta: { title: '管理员', icon: 'admin' }
+      },
+      {
+        path: 'log',
+        name: '后台日志',
+        component: () => import('@/views/sys/log'),
+        meta: { title: '后台日志', icon: 'log' }
+      }
+    ]
+  },
+
+  {
     path: '/form',
     component: Layout,
     children: [

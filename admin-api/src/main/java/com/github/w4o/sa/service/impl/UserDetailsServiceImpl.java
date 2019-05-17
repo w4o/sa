@@ -1,6 +1,6 @@
 package com.github.w4o.sa.service.impl;
 
-import com.github.w4o.sa.domain.LoginAdmin;
+import com.github.w4o.sa.domain.Auth;
 import com.github.w4o.sa.repository.UserDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,7 +27,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        LoginAdmin admin = userDetailsRepository.findByUsername(username);
+        Auth admin = userDetailsRepository.findByUsername(username);
 
         if (admin == null) {
             throw new UsernameNotFoundException(username);

@@ -1,6 +1,6 @@
 package com.github.w4o.sa.repository;
 
-import com.github.w4o.sa.domain.LoginAdmin;
+import com.github.w4o.sa.domain.Auth;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * @date 2019-05-16
  */
 @Repository
-public interface UserDetailsRepository extends CrudRepository<LoginAdmin, Integer> {
+public interface UserDetailsRepository extends CrudRepository<Auth, Integer> {
 
     /**
      * 根据用户名查询系统管理员
@@ -17,5 +17,5 @@ public interface UserDetailsRepository extends CrudRepository<LoginAdmin, Intege
      * @param username 用户名
      * @return 系统管理员
      */
-    LoginAdmin findByUsername(String username);
+    Auth findByUsername(String username);
 }

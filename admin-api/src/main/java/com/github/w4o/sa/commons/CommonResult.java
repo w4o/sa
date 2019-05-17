@@ -20,6 +20,11 @@ public class CommonResult {
     private String message;
     private Object data;
 
+    public CommonResult ok(){
+        this.code = 0;
+        return this;
+    }
+
     public CommonResult ok(Object data) {
         this.code = 0;
         this.data = data;

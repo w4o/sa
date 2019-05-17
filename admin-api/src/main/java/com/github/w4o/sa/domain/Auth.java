@@ -19,7 +19,7 @@ import java.util.List;
 @Entity
 @Table(name = "admin")
 @Data
-public class LoginAdmin implements UserDetails {
+public class Auth implements UserDetails {
 
     @Id
     @Column(name = "username")
