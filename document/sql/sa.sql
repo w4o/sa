@@ -11,7 +11,7 @@
  Target Server Version : 50644
  File Encoding         : 65001
 
- Date: 16/05/2019 13:57:11
+ Date: 17/05/2019 14:57:57
 */
 
 SET NAMES utf8mb4;
@@ -26,14 +26,21 @@ CREATE TABLE `admin` (
   `username` varchar(64) DEFAULT NULL COMMENT '用户名',
   `password` varchar(64) DEFAULT NULL COMMENT '密码',
   `avatar` varchar(255) DEFAULT NULL COMMENT '头像',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注信息',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '最后修改时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '删除标记',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
 BEGIN;
-INSERT INTO `admin` VALUES (1, 'admin', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'https://avatars0.githubusercontent.com/u/13061300?s=400');
+INSERT INTO `admin` VALUES (1, 'admin', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'https://avatars0.githubusercontent.com/u/13061300?s=400', 'Admin 备注信息1', NULL, NULL, 0);
+INSERT INTO `admin` VALUES (2, 'test1', '$2a$10$nzSNrbTeL0hRhtcnOX1eO.ciyS3MrAjvHPtTnyp6KkveIebns6pqO', NULL, 'test1 备注信息', NULL, NULL, 1);
+INSERT INTO `admin` VALUES (3, 'test2', '$2a$10$Taf3xdFbhLhgndKTq.MX.eRGphcfQm1A59yawQ17emNwl8AZpqWFu', NULL, 'test2 备注信息 备注信息修改', NULL, NULL, 1);
+INSERT INTO `admin` VALUES (4, 'test3', '$2a$10$VrAKmEa9uXg3PHqMO0thruso6o4f5zMs.iC7k8cIr91TAAGkq5Gc2', NULL, 'test3', '2019-05-17 06:27:52', NULL, 0);
 COMMIT;
 
 -- ----------------------------
