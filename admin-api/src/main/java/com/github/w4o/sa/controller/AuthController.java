@@ -4,6 +4,8 @@ import com.github.w4o.sa.commons.CommonResult;
 import com.github.w4o.sa.component.AdminLogHelper;
 import com.github.w4o.sa.dto.LoginParam;
 import com.github.w4o.sa.service.AdminService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,7 @@ import java.security.Principal;
 @RestController
 @RequestMapping("/auth")
 @Validated
+@Api(tags = "后台授权")
 public class AuthController {
 
     private final AdminService adminService;
@@ -29,6 +32,7 @@ public class AuthController {
         this.adminLogHelper = adminLogHelper;
     }
 
+    @ApiOperation(value = "管理员登陆")
     @PostMapping("/login")
     public CommonResult login(@RequestBody LoginParam loginParam) {
         return new CommonResult().ok(adminService.login(loginParam));
@@ -37,8 +41,8 @@ public class AuthController {
     /**
      * Admin 登出
      */
+    @ApiOperation(value = "管理员登出")
     @PostMapping("/logout")
-    @ResponseBody
     public CommonResult logout() {
         adminLogHelper.logoutSucceed();
         return new CommonResult().ok(null);
@@ -47,6 +51,7 @@ public class AuthController {
     /**
      * 获取当前登录用户信息
      */
+    @ApiOperation(value = "获取登陆用户信息")
     @GetMapping("/info")
     @ResponseBody
     public CommonResult getAdminInfo(Principal principal) {

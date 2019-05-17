@@ -1,8 +1,11 @@
 sa:
+  version: @project.version@
   jwt:
     header: X-Token
     secret: 4f1aaeeb0a76ac6033c5e61d8b5e3e6f
     expire: 604800
+  swagger2:
+    enabled: true
 spring:
   messages:
     encoding: UTF-8
