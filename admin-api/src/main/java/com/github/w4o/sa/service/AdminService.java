@@ -1,8 +1,8 @@
 package com.github.w4o.sa.service;
 
-import com.github.w4o.sa.dto.AdminInfoResult;
-import com.github.w4o.sa.dto.LoginParam;
-import com.github.w4o.sa.dto.LoginResult;
+import com.github.w4o.sa.domain.Admin;
+import com.github.w4o.sa.dto.*;
+import org.springframework.data.domain.Page;
 
 /**
  * @author frank
@@ -22,7 +22,49 @@ public interface AdminService {
      * 根据用户名获取管理员信息
      *
      * @param username 用户名
-     * @return 管理信息
+     * @return 管理员
      */
-    AdminInfoResult getAdminInfo(String username);
+    AuthInfoResult getAdminInfo(String username);
+
+    /**
+     * 管理员列表
+     *
+     * @param username 检索条件：用户名
+     * @param page     当前页码
+     * @param size     分页条数
+     * @return 分页列表
+     */
+    Page<Admin> list(String username, Integer page, Integer size);
+
+    /**
+     * 管理员信息
+     *
+     * @param id 管理员id
+     * @return 管理员信息
+     */
+    AdminReadResult info(Integer id);
+
+    /**
+     * 创建管理员
+     *
+     * @param createAdminParam 创建参数
+     * @return 管理员实体
+     */
+    Admin create(CreateAdminParam createAdminParam);
+
+    /**
+     * 根据ID更新管理员信息
+     *
+     * @param id               id
+     * @param updateAdminParam 更新参数
+     * @return 管理员实体
+     */
+    Admin updateById(Integer id, UpdateAdminParam updateAdminParam);
+
+    /**
+     * 根据ID删除管理员
+     *
+     * @param id id
+     */
+    void deleteById(Integer id);
 }
