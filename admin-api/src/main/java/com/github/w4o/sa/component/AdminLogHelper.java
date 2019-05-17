@@ -2,7 +2,7 @@ package com.github.w4o.sa.component;
 
 import com.github.w4o.sa.domain.AdminLog;
 import com.github.w4o.sa.repository.AdminLogRepository;
-import com.github.w4o.sa.util.HttpUtil;
+import com.github.w4o.sa.util.IpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -56,8 +56,8 @@ public class AdminLogHelper {
             throw new RuntimeException();
         }
         HttpServletRequest request = attributes.getRequest();
-        adminLog.setIp(HttpUtil.getIpAddress(request));
-        adminLog.setPath(HttpUtil.getBasePath(request));
+        adminLog.setIp(IpUtil.getIpAddress(request));
+        adminLog.setPath(request.getRequestURI());
         adminLogRepository.save(adminLog);
     }
 
