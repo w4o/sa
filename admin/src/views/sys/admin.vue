@@ -268,11 +268,11 @@ export default {
             this.$notify.success({
               title: '成功',
               message: '添加管理员成功'
-            }).catch(response => {
-              this.$notify.error({
-                title: '失败',
-                message: response.message
-              })
+            })
+          }).catch(response => {
+            this.$notify.error({
+              title: '失败',
+              message: response.message
             })
           })
         }
