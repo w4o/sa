@@ -3,7 +3,7 @@
     <div class="filter-container">
       <el-input v-model="listQuery.username" placeholder="Username" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">搜索</el-button>
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加</el-button>
+      <el-button v-permission="['sys:admin:create']" v-waves class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加</el-button>
     </div>
 
     <el-table
@@ -31,8 +31,8 @@
       </el-table-column>
       <el-table-column align="center" label="操作" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
-          <el-button type="danger" size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          <el-button v-permission="['sys:admin:update']" type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
+          <el-button v-permission="['sys:admin:delete']" type="danger" size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -109,12 +109,13 @@
 <script>
 import { getList, getInfo, createAdmin, updateAdmin, deleteAdmin } from '@/api/admin'
 import waves from '@/directive/waves'
+import permission from '@/directive/permission'
 import { getToken } from '@/utils/auth'
 import Pagination from '@/components/Pagination'
 
 export default {
   components: { Pagination },
-  directives: { waves },
+  directives: { waves, permission },
   filters: {},
   data() {
     return {

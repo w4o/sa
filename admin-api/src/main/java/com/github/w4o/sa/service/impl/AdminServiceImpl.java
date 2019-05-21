@@ -1,23 +1,17 @@
 package com.github.w4o.sa.service.impl;
 
-import com.github.w4o.sa.component.AdminLogHelper;
-import com.github.w4o.sa.component.JwtTokenUtil;
 import com.github.w4o.sa.domain.Admin;
-import com.github.w4o.sa.dto.*;
+import com.github.w4o.sa.dto.AdminReadResult;
+import com.github.w4o.sa.dto.CreateAdminParam;
+import com.github.w4o.sa.dto.UpdateAdminParam;
 import com.github.w4o.sa.repository.AdminRepository;
-import com.github.w4o.sa.repository.UserDetailsRepository;
 import com.github.w4o.sa.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -34,47 +28,11 @@ import java.util.List;
 @Service
 public class AdminServiceImpl implements AdminService {
 
-    private final PasswordEncoder passwordEncoder;
-    private final JwtTokenUtil jwtTokenUtil;
     private final AdminRepository adminRepository;
-    private final UserDetailsRepository userDetailsRepository;
-    private final AdminLogHelper adminLogHelper;
 
     @Autowired
-    public AdminServiceImpl(PasswordEncoder passwordEncoder,
-                            JwtTokenUtil jwtTokenUtil,
-                            AdminRepository adminRepository,
-                            UserDetailsRepository userDetailsRepository,
-                            AdminLogHelper adminLogHelper) {
-        this.passwordEncoder = passwordEncoder;
-        this.jwtTokenUtil = jwtTokenUtil;
+    public AdminServiceImpl(AdminRepository adminRepository) {
         this.adminRepository = adminRepository;
-        this.userDetailsRepository = userDetailsRepository;
-        this.adminLogHelper = adminLogHelper;
-    }
-
-    @Override
-    public LoginResult login(LoginParam loginParam) {
-        UserDetails userDetails = userDetailsRepository.findByUsername(loginParam.getUsername());
-        if (!passwordEncoder.matches(loginParam.getPassword(), userDetails.getPassword())) {
-            throw new BadCredentialsException("密码不正确");
-        }
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = jwtTokenUtil.generateToken(userDetails);
-        adminLogHelper.loginSucceed();
-        // TODO 之后增加登陆时间
-        return new LoginResult(token);
-    }
-
-    @Override
-    public AuthInfoResult getAdminInfo(String username) {
-        Admin admin = adminRepository.findByUsername(username);
-        AuthInfoResult result = new AuthInfoResult();
-        result.setUsername(username);
-        result.setAvatar(admin.getAvatar());
-        result.setPerms(new String[]{"*"});
-        return result;
     }
 
     @Override
@@ -115,7 +73,8 @@ public class AdminServiceImpl implements AdminService {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String encodedPassword = encoder.encode(rawPassword);
 
-        Admin admin = new Admin().preInsert();
+        Admin admin = new Admin();
+        admin.preInsert();
         admin.setAvatar(createAdminParam.getAvatar());
         admin.setUsername(createAdminParam.getUsername());
         admin.setRemark(createAdminParam.getRemark());

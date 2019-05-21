@@ -24,3 +24,4 @@ logging:
     root:  info
     org.springframework:  info
     com.github.w4o.ticket:  info
+    org.hibernate.type.descriptor.sql.BasicBinder: trace

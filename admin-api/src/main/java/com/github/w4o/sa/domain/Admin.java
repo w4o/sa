@@ -4,10 +4,9 @@ import com.github.w4o.sa.commons.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author frank
@@ -61,9 +60,14 @@ public class Admin extends BaseEntity {
     @Column(name = "deleted")
     private Integer deleted;
 
-    public Admin preInsert() {
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "admin_role_relation",
+            joinColumns = {@JoinColumn(name = "admin_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    private List<Role> roles;
+
+    public void preInsert() {
         this.deleted = 0;
         this.createTime = new Date();
-        return this;
     }
 }

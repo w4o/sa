@@ -27,7 +27,7 @@ import Layout from '@/layout'
 
 /**
  * constantRoutes
- * a base page that does not have permission requirements
+ * a base page that does not have permsission requirements
  * all roles can be accessed
  */
 export const constantRoutes = [
@@ -55,24 +55,55 @@ export const constantRoutes = [
     }]
   },
 
+  // 404 page must be placed at the end !!!
+  { path: '*', redirect: '/404', hidden: true }
+]
+
+/**
+ * asyncRoutes
+ * the routes that need to be dynamically loaded based on user roles
+ */
+export const asyncRoutes = [
   {
     path: '/example',
     component: Layout,
     redirect: '/example/table',
     name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    meta: {
+      title: 'Example',
+      icon: 'example',
+      perms: ['example']
+    },
     children: [
       {
         path: 'table',
         name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        component: () => import('@/views/example/table'),
+        meta: {
+          title: 'Table',
+          icon: 'table',
+          perms: ['example:table']
+        }
       },
       {
         path: 'tree',
         name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        component: () => import('@/views/example/tree'),
+        meta: {
+          title: 'Tree',
+          icon: 'tree',
+          perms: ['example:tree']
+        }
+      },
+      {
+        path: 'form',
+        name: 'Form',
+        component: () => import('@/views/example/form'),
+        meta: {
+          title: 'Form',
+          icon: 'form',
+          perms: ['form']
+        }
       }
     ]
   },
@@ -82,90 +113,128 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/sys/admin',
     name: '系统管理',
-    meta: { title: '系统管理', icon: 'system' },
+    meta: {
+      title: '系统管理',
+      icon: 'system',
+      perms: ['sys']
+    },
     children: [
       {
         path: 'admin',
         name: '管理员',
         component: () => import('@/views/sys/admin'),
-        meta: { title: '管理员', icon: 'admin' }
+        meta: {
+          title: '管理员',
+          icon: 'admin',
+          perms: ['sys:admin']
+        }
       },
       {
         path: 'log',
         name: '后台日志',
         component: () => import('@/views/sys/log'),
-        meta: { title: '后台日志', icon: 'log' }
-      }
-    ]
-  },
-
-  {
-    path: '/form',
-    component: Layout,
-    children: [
+        meta: {
+          title: '后台日志',
+          icon: 'log',
+          perms: ['sys:log']
+        }
+      },
       {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        path: 'role',
+        name: '角色管理',
+        component: () => import('@/views/sys/role'),
+        meta: {
+          title: '角色管理',
+          icon: 'role',
+          perms: ['sys:role']
+        }
       }
     ]
   },
 
   {
-    path: '/nested',
+    path: '/menu',
     component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
+    redirect: '/menu/menu1',
+    name: '菜单',
     meta: {
-      title: 'Nested',
-      icon: 'nested'
+      title: '菜单',
+      icon: 'nested',
+      perms: ['menu']
     },
     children: [
       {
         path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
+        component: () => import('@/views/menu/menu1/index'), // Parent router-view
         name: 'Menu1',
-        meta: { title: 'Menu1' },
+        meta: {
+          title: 'Menu1',
+          icon: 'menu',
+          perms: ['menu:menu1']
+        },
         children: [
           {
             path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
+            component: () => import('@/views/menu/menu1/menu1-1'),
             name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
+            meta: {
+              title: 'Menu1-1',
+              icon: 'menu',
+              perms: ['menu:menu1:1']
+            }
           },
           {
             path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
+            component: () => import('@/views/menu/menu1/menu1-2'),
             name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
+            meta: {
+              title: 'Menu1-2',
+              icon: 'menu',
+              perms: ['menu:menu1:2']
+            },
             children: [
               {
                 path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+                component: () => import('@/views/menu/menu1/menu1-2/menu1-2-1'),
                 name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
+                meta: {
+                  title: 'Menu1-2-1',
+                  icon: 'menu',
+                  perms: ['menu:menu1:2:1']
+                }
               },
               {
                 path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+                component: () => import('@/views/menu/menu1/menu1-2/menu1-2-2'),
                 name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
+                meta: {
+                  title: 'Menu1-2-2',
+                  icon: 'menu',
+                  perms: ['menu:menu1:2:2']
+                }
               }
             ]
           },
           {
             path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
+            component: () => import('@/views/menu/menu1/menu1-3'),
             name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
+            meta: {
+              title: 'Menu1-3',
+              icon: 'menu',
+              perms: ['menu:menu1:3']
+            }
           }
         ]
       },
       {
         path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
+        component: () => import('@/views/menu/menu2/index'),
+        meta: {
+          title: 'menu2',
+          icon: 'menu',
+          perms: ['menu:menu2']
+        }
       }
     ]
   },
@@ -175,14 +244,11 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
+        path: 'https://github.com/w4o/sa',
         meta: { title: 'External Link', icon: 'link' }
       }
     ]
-  },
-
-  // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  }
 ]
 
 const createRouter = () => new Router({

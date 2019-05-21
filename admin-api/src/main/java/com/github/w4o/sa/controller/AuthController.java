@@ -3,7 +3,7 @@ package com.github.w4o.sa.controller;
 import com.github.w4o.sa.commons.CommonResult;
 import com.github.w4o.sa.component.AdminLogHelper;
 import com.github.w4o.sa.dto.LoginParam;
-import com.github.w4o.sa.service.AdminService;
+import com.github.w4o.sa.service.AuthService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,20 +22,20 @@ import java.security.Principal;
 @Api(tags = "后台授权")
 public class AuthController {
 
-    private final AdminService adminService;
+    private final AuthService authService;
     private final AdminLogHelper adminLogHelper;
 
     @Autowired
-    public AuthController(AdminService adminService,
+    public AuthController(AuthService authService,
                           AdminLogHelper adminLogHelper) {
-        this.adminService = adminService;
+        this.authService = authService;
         this.adminLogHelper = adminLogHelper;
     }
 
     @ApiOperation(value = "管理员登陆")
     @PostMapping("/login")
     public CommonResult login(@RequestBody LoginParam loginParam) {
-        return new CommonResult().ok(adminService.login(loginParam));
+        return new CommonResult().ok(authService.login(loginParam));
     }
 
     /**
@@ -55,6 +55,6 @@ public class AuthController {
     @GetMapping("/info")
     @ResponseBody
     public CommonResult getAdminInfo(Principal principal) {
-        return new CommonResult().ok(adminService.getAdminInfo(principal.getName()));
+        return new CommonResult().ok(authService.getAdminInfo(principal.getName()));
     }
 }
