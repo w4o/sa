@@ -1,8 +1,8 @@
 package com.github.w4o.sa.vo;
 
+import lombok.Builder;
 import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,9 +10,12 @@ import java.util.List;
  * @date 2019-05-21
  */
 @Data
+@Builder
 public class PermissionVo {
     private Integer id;
     private String label;
     private String permission;
-    private List<PermissionVo> children = new ArrayList<>();
+    private Integer type;
+    private Integer parentId;
+    private List<PermissionVo> children;
 }

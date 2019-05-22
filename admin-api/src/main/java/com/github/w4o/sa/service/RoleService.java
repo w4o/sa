@@ -54,4 +54,12 @@ public interface RoleService {
      * @return 结果
      */
     PermissionsResult getPermissions(Integer roleId);
+
+    /**
+     * 更新角色权限
+     *
+     * @param roleId      角色ID
+     * @param permissions 权限数组
+     */
+    void updatePermissions(Integer roleId, Integer[] permissions);
 }

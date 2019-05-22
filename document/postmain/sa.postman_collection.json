@@ -10,6 +10,19 @@
 			"item": [
 				{
 					"name": "/auth/login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "31acab0c-e366-47ac-98bb-1a3b8dc4d1bb",
+								"exec": [
+									"pm.environment.set( 'TOKEN', pm.response.json().data.token)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -50,10 +63,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "http://{{HOST}}:{{PORT}}/auth/logout",
 							"protocol": "http",
@@ -76,14 +85,10 @@
 						"header": [
 							{
 								"key": "X-Token",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTc5MDc5MDc0MDIsImV4cCI6MTU1ODUxMjcwN30.4liVwPqixmD4cli4RvzohsLvGjlxz8jwtm9YhZoYXBsa_8NVM8pPl_avJ1n2HrwBzvTdKxTmGWH2IqMYttsyXQ",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTg0OTMwMjk0OTAsImV4cCI6MTU1OTA5NzgyOX0.FbfowYU706J_Nd_t1BipZVLuggd6aLtxmQIJ7S0VTaPUM3uD7QRwg1fJ3IsRyopg0j4tzYA3aqXWTRP9y2VUCA",
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "http://{{HOST}}:{{PORT}}/auth/info",
 							"protocol": "http",
@@ -102,232 +107,288 @@
 			]
 		},
 		{
-			"name": "admin",
+			"name": "sys",
 			"item": [
 				{
-					"name": "/admin/read/{id}",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-Token",
-								"type": "text",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTgwNzQ2MTUyMjcsImV4cCI6MTU1ODY3OTQxNX0.ubjsOQdLTfBydnELv4BrxHCl52ge64Brtj6qPHNNLnDX1piJVDHZW2vX-vHxDbyzNunLQ_O9z7iIjRipKVlW7g"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://{{HOST}}:{{PORT}}/admin/read/1",
-							"protocol": "http",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"admin",
-								"read",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/admin/update/{id}",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "X-Token",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTgwNzQ2MTUyMjcsImV4cCI6MTU1ODY3OTQxNX0.ubjsOQdLTfBydnELv4BrxHCl52ge64Brtj6qPHNNLnDX1piJVDHZW2vX-vHxDbyzNunLQ_O9z7iIjRipKVlW7g",
-								"type": "text"
+					"name": "admin",
+					"item": [
+						{
+							"name": "/admin/read/{id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Token",
+										"type": "text",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTgwNzQ2MTUyMjcsImV4cCI6MTU1ODY3OTQxNX0.ubjsOQdLTfBydnELv4BrxHCl52ge64Brtj6qPHNNLnDX1piJVDHZW2vX-vHxDbyzNunLQ_O9z7iIjRipKVlW7g"
+									}
+								],
+								"url": {
+									"raw": "http://{{HOST}}:{{PORT}}/admin/read/1",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"port": "{{PORT}}",
+									"path": [
+										"admin",
+										"read",
+										"1"
+									]
+								}
 							},
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"avatar\":\"https://avatars0.githubusercontent.com/u/13061300?s=400\",\n\t\"remark\":\"Admin 备注信息1\"\n}"
+							"response": []
 						},
-						"url": {
-							"raw": "http://{{HOST}}:{{PORT}}/admin/update/1",
-							"protocol": "http",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"admin",
-								"update",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/admin/create",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "X-Token",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTgwNzQ2MTUyMjcsImV4cCI6MTU1ODY3OTQxNX0.ubjsOQdLTfBydnELv4BrxHCl52ge64Brtj6qPHNNLnDX1piJVDHZW2vX-vHxDbyzNunLQ_O9z7iIjRipKVlW7g",
-								"type": "text"
+						{
+							"name": "/admin/update/{id}",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Token",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTgwNzQ2MTUyMjcsImV4cCI6MTU1ODY3OTQxNX0.ubjsOQdLTfBydnELv4BrxHCl52ge64Brtj6qPHNNLnDX1piJVDHZW2vX-vHxDbyzNunLQ_O9z7iIjRipKVlW7g",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"avatar\":\"https://avatars0.githubusercontent.com/u/13061300?s=400\",\n\t\"remark\":\"Admin 备注信息1\"\n}"
+								},
+								"url": {
+									"raw": "http://{{HOST}}:{{PORT}}/admin/update/1",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"port": "{{PORT}}",
+									"path": [
+										"admin",
+										"update",
+										"1"
+									]
+								}
 							},
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"username\":\"test3\",\n\t\"password\":\"123456\",\n\t\"remark\":\"备注信息\"\n}"
+							"response": []
 						},
-						"url": {
-							"raw": "http://{{HOST}}:{{PORT}}/admin/create",
-							"protocol": "http",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"admin",
-								"create"
-							]
+						{
+							"name": "/admin/create",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Token",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTgwNzQ2MTUyMjcsImV4cCI6MTU1ODY3OTQxNX0.ubjsOQdLTfBydnELv4BrxHCl52ge64Brtj6qPHNNLnDX1piJVDHZW2vX-vHxDbyzNunLQ_O9z7iIjRipKVlW7g",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\":\"test3\",\n\t\"password\":\"123456\",\n\t\"remark\":\"备注信息\"\n}"
+								},
+								"url": {
+									"raw": "http://{{HOST}}:{{PORT}}/admin/create",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"port": "{{PORT}}",
+									"path": [
+										"admin",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/admin/delete/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "X-Token",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTgwNzQ2MTUyMjcsImV4cCI6MTU1ODY3OTQxNX0.ubjsOQdLTfBydnELv4BrxHCl52ge64Brtj6qPHNNLnDX1piJVDHZW2vX-vHxDbyzNunLQ_O9z7iIjRipKVlW7g",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{HOST}}:{{PORT}}/admin/delete/2",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"port": "{{PORT}}",
+									"path": [
+										"admin",
+										"delete",
+										"2"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					],
+					"_postman_isSubFolder": true
 				},
 				{
-					"name": "/admin/delete/{id}",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "X-Token",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTgwNzQ2MTUyMjcsImV4cCI6MTU1ODY3OTQxNX0.ubjsOQdLTfBydnELv4BrxHCl52ge64Brtj6qPHNNLnDX1piJVDHZW2vX-vHxDbyzNunLQ_O9z7iIjRipKVlW7g",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://{{HOST}}:{{PORT}}/admin/delete/2",
-							"protocol": "http",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"admin",
-								"delete",
-								"2"
-							]
+					"name": "log",
+					"item": [
+						{
+							"name": "/log/list",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Token",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTgwNzQ2MTUyMjcsImV4cCI6MTU1ODY3OTQxNX0.ubjsOQdLTfBydnELv4BrxHCl52ge64Brtj6qPHNNLnDX1piJVDHZW2vX-vHxDbyzNunLQ_O9z7iIjRipKVlW7g",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{HOST}}:{{PORT}}/log/list?page=1&size=10",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"port": "{{PORT}}",
+									"path": [
+										"log",
+										"list"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "role",
+					"item": [
+						{
+							"name": "/role/list",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Token",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTgzMzk2Mzc2MDksImV4cCI6MTU1ODk0NDQzN30.5RyObrrUDP84HizmKIgefs1PaBNvnOkzPfj_o2ZoAogiNch0exyCSWFUSxZvBxLMPP1U9uuzK6DcEU8tcbqBgA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{HOST}}:{{PORT}}/role/list",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"port": "{{PORT}}",
+									"path": [
+										"role",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/role/{id}/permissions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Token",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTg0OTMwMjk0OTAsImV4cCI6MTU1OTA5NzgyOX0.FbfowYU706J_Nd_t1BipZVLuggd6aLtxmQIJ7S0VTaPUM3uD7QRwg1fJ3IsRyopg0j4tzYA3aqXWTRP9y2VUCA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{HOST}}:{{PORT}}/role/2/permissions",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"port": "{{PORT}}",
+									"path": [
+										"role",
+										"2",
+										"permissions"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
 				}
 			]
 		},
 		{
-			"name": "table",
+			"name": "example",
 			"item": [
 				{
-					"name": "/table/list",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-Token",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTc5MDc5MDc0MDIsImV4cCI6MTU1ODUxMjcwN30.4liVwPqixmD4cli4RvzohsLvGjlxz8jwtm9YhZoYXBsa_8NVM8pPl_avJ1n2HrwBzvTdKxTmGWH2IqMYttsyXQ",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://{{HOST}}:{{PORT}}/table/list?page=3&size=5",
-							"protocol": "http",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"table",
-								"list"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "3"
-								},
-								{
-									"key": "size",
-									"value": "5"
+					"name": "table",
+					"item": [
+						{
+							"name": "/table/list",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Token",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTc5MDc5MDc0MDIsImV4cCI6MTU1ODUxMjcwN30.4liVwPqixmD4cli4RvzohsLvGjlxz8jwtm9YhZoYXBsa_8NVM8pPl_avJ1n2HrwBzvTdKxTmGWH2IqMYttsyXQ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{HOST}}:{{PORT}}/table/list?page=3&size=5",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"port": "{{PORT}}",
+									"path": [
+										"table",
+										"list"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "3"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										}
+									]
 								}
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "log",
-			"item": [
-				{
-					"name": "/log/list",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-Token",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTgwNzQ2MTUyMjcsImV4cCI6MTU1ODY3OTQxNX0.ubjsOQdLTfBydnELv4BrxHCl52ge64Brtj6qPHNNLnDX1piJVDHZW2vX-vHxDbyzNunLQ_O9z7iIjRipKVlW7g",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://{{HOST}}:{{PORT}}/log/list?page=1&size=10",
-							"protocol": "http",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"log",
-								"list"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "1"
-								},
-								{
-									"key": "size",
-									"value": "10"
-								}
-							]
-						}
-					},
-					"response": []
+					],
+					"_postman_isSubFolder": true
 				}
 			]
 		}
@@ -356,15 +417,21 @@
 	],
 	"variable": [
 		{
-			"id": "b38a899b-5a0f-40a8-93b4-74cbefd441f9",
+			"id": "93dd36aa-be60-4a8e-b3a4-8e2af33a7e36",
 			"key": "HOST",
 			"value": "localhost",
 			"type": "string"
 		},
 		{
-			"id": "e525d766-9a25-47ba-be1b-229f3163d1d9",
+			"id": "ae31eb81-983a-49b0-a996-47bff5fb321a",
 			"key": "PORT",
 			"value": "8081",
+			"type": "string"
+		},
+		{
+			"id": "cdce2f29-fb9a-4f59-a636-ebab6f4f674b",
+			"key": "TOKEN",
+			"value": "abc",
 			"type": "string"
 		}
 	]

@@ -13,5 +13,5 @@ import java.util.Set;
 @Data
 public class PermissionsResult {
     private List<PermissionVo> permissions;
-    private Set<String> assignedPermissions;
+    private Set<Integer> assignedPermissions;
 }

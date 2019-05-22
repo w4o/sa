@@ -62,11 +62,15 @@
         :data="permissionsData"
         :default-checked-keys="assignedPermissions"
         show-checkbox
+        check-strictly
         node-key="id"
         highlight-current>
         <span slot-scope="{ node, data }" class="custom-tree-node">
           <span>{{ data.label }}</span>
-          <el-tag v-if="data.api" type="success" size="mini">{{ data.api }}</el-tag>
+          <el-tag v-if="data.permission" type="success" size="mini">{{ data.permission }}</el-tag>
+          <el-tag type="success" size="mini">{{ data.id }}</el-tag>
+          <el-tag v-if="data.type===1" type="error" size="mini">菜单</el-tag>
+          <el-tag v-if="data.type===2" type="warning" size="mini">按钮/接口</el-tag>
         </span>
       </el-tree>
       <div slot="footer" class="dialog-footer">
@@ -229,7 +233,21 @@ export default {
         this.assignedPermissions = response.data.assignedPermissions
       })
     },
-    updatePermission() {}
+    updatePermission() {
+      this.permissionForm.permissions = this.$refs.tree.getCheckedKeys()
+      updatePermission(this.permissionForm).then(() => {
+        this.permissionDialogFormVisible = false
+        this.$notify.success({
+          title: '成功',
+          message: '授权成功'
+        })
+      }).catch(error => {
+        this.$notify.error({
+          title: '失败',
+          message: error
+        })
+      })
+    }
   }
 }
 </script>

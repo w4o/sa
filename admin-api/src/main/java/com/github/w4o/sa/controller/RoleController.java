@@ -70,8 +70,21 @@ public class RoleController {
      * @param id 角色id
      */
     @ApiOperation("获取所有权限和当前角色分配的权限")
-    @GetMapping("/permissions/{id}")
+    @GetMapping("/{id}/permissions")
     public CommonResult permissions(@PathVariable(value = "id") Integer id) {
+        return new CommonResult().ok(roleService.getPermissions(id));
+    }
+
+    /**
+     * 更新角色权限
+     *
+     * @param id 角色id
+     */
+    @ApiOperation("更新角色权限")
+    @PostMapping("/{id}/permissions")
+    public CommonResult updatePermissions(@PathVariable(value = "id") Integer id,
+                                          @RequestBody Integer[] permissions) {
+        roleService.updatePermissions(id, permissions);
         return new CommonResult().ok();
     }
 }

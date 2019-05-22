@@ -33,14 +33,15 @@ export function deleteRole(id) {
 
 export function getPermission(id) {
   return request({
-    url: '/role/permissions/' + id,
+    url: '/role/' + id + '/permissions',
     method: 'get'
   })
 }
 
-export function updatePermission() {
+export function updatePermission(data) {
   return request({
-    url: 'role/permissions',
-    method: 'post'
+    url: 'role/' + data.roleId + '/permissions',
+    method: 'post',
+    data: data.permissions
   })
 }
