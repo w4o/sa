@@ -24,11 +24,11 @@ public class JwtTokenUtil {
     private static final String CLAIM_KEY_USERNAME = "sub";
     private static final String CLAIM_KEY_CREATED = "created";
 
-    private final Properties saProperties;
+    private final Properties properties;
 
     @Autowired
-    public JwtTokenUtil(Properties saProperties) {
-        this.saProperties = saProperties;
+    public JwtTokenUtil(Properties properties) {
+        this.properties = properties;
     }
 
     /**
@@ -38,7 +38,7 @@ public class JwtTokenUtil {
         return Jwts.builder()
                 .setClaims(claims)
                 .setExpiration(generateExpirationDate())
-                .signWith(SignatureAlgorithm.HS512, saProperties.getJwt().getSecret())
+                .signWith(SignatureAlgorithm.HS512, properties.getJwt().getSecret())
                 .compact();
     }
 
@@ -49,7 +49,7 @@ public class JwtTokenUtil {
         Claims claims = null;
         try {
             claims = Jwts.parser()
-                    .setSigningKey(saProperties.getJwt().getSecret())
+                    .setSigningKey(properties.getJwt().getSecret())
                     .parseClaimsJws(token)
                     .getBody();
         } catch (Exception e) {
@@ -62,7 +62,7 @@ public class JwtTokenUtil {
      * 生成token的过期时间
      */
     private Date generateExpirationDate() {
-        return new Date(System.currentTimeMillis() + saProperties.getJwt().getExpire() * 1000);
+        return new Date(System.currentTimeMillis() + properties.getJwt().getExpire() * 1000);
     }
 
     /**

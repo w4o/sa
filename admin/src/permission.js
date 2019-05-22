@@ -26,15 +26,31 @@ router.beforeEach(async(to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-      const hasGetUserInfo = store.getters.name
-      if (hasGetUserInfo) {
+      const hasPerms = store.getters.perms && store.getters.perms.length > 0
+      if (hasPerms) {
         next()
       } else {
         try {
           // get user info
-          await store.dispatch('auth/getInfo')
+          const { perms } = await store.dispatch('auth/getInfo')
 
-          next()
+          if (perms.length === 0) {
+            Message.error('用户不能进入系统：没有权限信息')
+            await store.dispatch('auth/resetToken')
+            next(`/login?redirect=${to.path}`)
+            NProgress.done()
+          } else {
+            // generate accessible routes map based on perms
+            const accessRoutes = await store.dispatch('permission/generateRoutes', perms)
+            // dynamically add accessible routes
+            router.addRoutes(accessRoutes)
+
+            console.log(accessRoutes)
+
+            // hack method to ensure that addRoutes is complete
+            // set the replace: true, so the navigation will not leave a history record
+            next({ ...to, replace: true })
+          }
         } catch (error) {
           // remove token and go to login page to re-login
           await store.dispatch('auth/resetToken')

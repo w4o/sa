@@ -11,4 +11,5 @@ public class AuthInfoResult {
     private String username;
     private String[] perms;
     private String avatar;
+    private String[] roles;
 }
