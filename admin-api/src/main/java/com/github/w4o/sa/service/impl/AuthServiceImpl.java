@@ -12,6 +12,7 @@ import com.github.w4o.sa.repository.AdminRepository;
 import com.github.w4o.sa.repository.UserDetailsRepository;
 import com.github.w4o.sa.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -66,6 +67,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
+    @Cacheable(value = "adminInfo", key = "#username")
     public AuthInfoResult getAdminInfo(String username) {
         Admin admin = adminRepository.findByUsername(username);
         AuthInfoResult result = new AuthInfoResult();
