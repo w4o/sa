@@ -11,7 +11,7 @@
  Target Server Version : 50644
  File Encoding         : 65001
 
- Date: 22/05/2019 12:10:24
+ Date: 28/05/2019 11:24:35
 */
 
 SET NAMES utf8mb4;
@@ -31,16 +31,17 @@ CREATE TABLE `admin` (
   `update_time` datetime DEFAULT NULL COMMENT '最后修改时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '删除标记',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
 BEGIN;
 INSERT INTO `admin` VALUES (1, 'admin', '$2a$10$NZ5o7r2E.ayT2ZoxgjlI.eJ6OEYqjH7INR/F.mXDbjZJi9HF0YCVG', 'https://avatars0.githubusercontent.com/u/13061300?s=400', 'Admin 备注信息1', NULL, NULL, 0);
-INSERT INTO `admin` VALUES (2, 'test1', '$2a$10$nzSNrbTeL0hRhtcnOX1eO.ciyS3MrAjvHPtTnyp6KkveIebns6pqO', NULL, 'test1 备注信息', NULL, NULL, 0);
+INSERT INTO `admin` VALUES (2, 'test1', '$2a$10$nzSNrbTeL0hRhtcnOX1eO.ciyS3MrAjvHPtTnyp6KkveIebns6pqO', 'http://localhost:8081/static/IRjgUppwwrMG8PTgJZui.jpg', 'test1 备注信息', NULL, '2019-05-28 03:07:32', 0);
 INSERT INTO `admin` VALUES (3, 'test2', '$2a$10$Taf3xdFbhLhgndKTq.MX.eRGphcfQm1A59yawQ17emNwl8AZpqWFu', NULL, 'test2 备注信息 备注信息修改', NULL, NULL, 1);
 INSERT INTO `admin` VALUES (4, 'test3', '$2a$10$VrAKmEa9uXg3PHqMO0thruso6o4f5zMs.iC7k8cIr91TAAGkq5Gc2', NULL, 'test3', '2019-05-17 06:27:52', NULL, 0);
+INSERT INTO `admin` VALUES (5, 'test4', '$2a$10$h9FYcb28CyeQjqz32NE2PeOmkku109EYFHEJyueL2mNDySFtFA7zG', NULL, '备注信息', '2019-05-28 02:32:07', NULL, 0);
 COMMIT;
 
 -- ----------------------------
@@ -57,7 +58,7 @@ CREATE TABLE `admin_log` (
   `result` varchar(200) DEFAULT NULL COMMENT '结果',
   `ip` varchar(30) DEFAULT NULL COMMENT 'IP地址',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of admin_log
@@ -129,6 +130,21 @@ INSERT INTO `admin_log` VALUES (63, 'admin', '/auth/login', '2019-05-22 02:56:39
 INSERT INTO `admin_log` VALUES (64, 'admin', '/auth/logout', '2019-05-22 04:09:38', '登出', 1, '成功', '0:0:0:0:0:0:0:1');
 INSERT INTO `admin_log` VALUES (65, 'test1', '/auth/login', '2019-05-22 04:09:41', '登陆', 1, '成功', '0:0:0:0:0:0:0:1');
 INSERT INTO `admin_log` VALUES (66, 'test1', '/auth/logout', '2019-05-22 04:09:56', '登出', 1, '成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `admin_log` VALUES (67, 'admin', '/auth/login', '2019-05-24 02:52:10', '登陆', 1, '成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `admin_log` VALUES (68, 'admin', '/auth/logout', '2019-05-24 02:55:22', '登出', 1, '成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `admin_log` VALUES (69, 'admin', '/auth/login', '2019-05-24 02:55:24', '登陆', 1, '成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `admin_log` VALUES (70, 'admin', '/auth/logout', '2019-05-24 02:56:05', '登出', 1, '成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `admin_log` VALUES (71, 'admin', '/auth/login', '2019-05-24 02:56:06', '登陆', 1, '成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `admin_log` VALUES (72, 'admin', '/auth/logout', '2019-05-24 02:56:58', '登出', 1, '成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `admin_log` VALUES (73, 'admin', '/auth/login', '2019-05-24 02:57:01', '登陆', 1, '成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `admin_log` VALUES (74, 'admin', '/auth/logout', '2019-05-24 03:03:00', '登出', 1, '成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `admin_log` VALUES (75, 'admin', '/auth/login', '2019-05-24 03:03:05', '登陆', 1, '成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `admin_log` VALUES (76, 'admin', '/auth/logout', '2019-05-24 03:10:54', '登出', 1, '成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `admin_log` VALUES (77, 'admin', '/auth/login', '2019-05-24 03:11:06', '登陆', 1, '成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `admin_log` VALUES (78, 'admin', '/auth/login', '2019-05-24 03:12:19', '登陆', 1, '成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `admin_log` VALUES (79, 'admin', '/auth/login', '2019-05-24 03:22:34', '登陆', 1, '成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `admin_log` VALUES (80, 'admin', '/auth/login', '2019-05-28 02:30:55', '登陆', 1, '成功', '0:0:0:0:0:0:0:1');
+INSERT INTO `admin_log` VALUES (81, 'admin', '/auth/login', '2019-05-28 02:35:59', '登陆', 1, '成功', '0:0:0:0:0:0:0:1');
 COMMIT;
 
 -- ----------------------------
@@ -140,7 +156,7 @@ CREATE TABLE `admin_role_relation` (
   `admin_id` int(11) DEFAULT NULL,
   `role_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of admin_role_relation
@@ -164,7 +180,7 @@ CREATE TABLE `permission` (
   `parent_id` int(11) DEFAULT NULL,
   `type` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of permission
@@ -216,7 +232,7 @@ BEGIN;
 INSERT INTO `role` VALUES (1, '系统管理员', '系统管理员，具有系统全部权限', '1900-01-01 00:00:00', 0, NULL);
 INSERT INTO `role` VALUES (2, '角色2', '具有系统部分权限', '1900-01-01 00:00:00', 0, NULL);
 INSERT INTO `role` VALUES (3, '角色3', '具有系统部分权限', '1900-01-01 00:00:00', 0, NULL);
-INSERT INTO `role` VALUES (4, 'role test1', 'role test1 description 11', '2019-05-21 02:57:10', 0, '2019-05-21 03:18:46');
+INSERT INTO `role` VALUES (4, 'role test1', 'role test1 description 1111', '2019-05-21 02:57:10', 0, '2019-05-28 02:40:07');
 INSERT INTO `role` VALUES (5, 'role test2', '', '2019-05-21 02:58:39', 1, NULL);
 COMMIT;
 
@@ -243,6 +259,30 @@ INSERT INTO `role_permission_relation` VALUES (16, 2, 4);
 INSERT INTO `role_permission_relation` VALUES (17, 2, 7);
 INSERT INTO `role_permission_relation` VALUES (18, 2, 9);
 INSERT INTO `role_permission_relation` VALUES (19, 2, 10);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for sys_storage
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_storage`;
+CREATE TABLE `sys_storage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `key` varchar(63) NOT NULL COMMENT '文件的唯一索引',
+  `name` varchar(255) NOT NULL COMMENT '文件名',
+  `type` varchar(20) NOT NULL COMMENT '文件类型',
+  `size` int(11) NOT NULL COMMENT '文件大小',
+  `url` varchar(255) DEFAULT NULL COMMENT '文件访问链接',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COMMENT='文件存储表';
+
+-- ----------------------------
+-- Records of sys_storage
+-- ----------------------------
+BEGIN;
+INSERT INTO `sys_storage` VALUES (36, 'IRjgUppwwrMG8PTgJZui.jpg', '802758360cd659c01c5a0a9af85668b5_middle.jpg', 'image/jpeg', 6559, 'http://localhost:8081/static/IRjgUppwwrMG8PTgJZui.jpg', NULL, NULL, NULL);
 COMMIT;
 
 -- ----------------------------
