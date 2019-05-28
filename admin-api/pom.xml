@@ -15,6 +15,9 @@
         <lombok.version>1.18.6</lombok.version>
         <jjwt.version>0.9.0</jjwt.version>
         <swagger2.version>2.9.2</swagger2.version>
+        <qcloud-cos.version>5.4.4</qcloud-cos.version>
+        <aliyun-oss.version>2.5.0</aliyun-oss.version>
+        <qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
     </properties>
 
     <parent>
@@ -55,6 +58,11 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
 
         <!-- lombok -->
         <dependency>
@@ -78,6 +86,36 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.qcloud</groupId>
+            <artifactId>cos_api</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+            <version>${qcloud-cos.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-lang</artifactId>
+                    <groupId>commons-lang</groupId>
+                </exclusion>
+            </exclusions>
+            <version>${aliyun-oss.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>${qiniu.version}</version>
         </dependency>
 
         <!-- 热部署模块 ,因为跟redis 缓存有冲突，没找解决方案，先注释掉-->

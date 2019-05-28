@@ -56,6 +56,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/webjars/**",
                         "/swagger-ui.html",
                         "/v2/api-docs").permitAll()
+                // 系统静态资源访问
+                .antMatchers(
+                        "/static/**").permitAll()
                 // 对登录要允许匿名访问
                 .antMatchers("/auth/login")
                 .permitAll()

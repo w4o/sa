@@ -108,6 +108,7 @@
 
 <script>
 import { getList, getInfo, createAdmin, updateAdmin, deleteAdmin } from '@/api/admin'
+import { uploadPath } from '@/api/storage'
 import waves from '@/directive/waves'
 import permission from '@/directive/permission'
 import { getToken } from '@/utils/auth'
@@ -135,7 +136,7 @@ export default {
       dialogFormVisible: false,
       dialogPasswordDisabled: false,
       dialogUsernameDisabled: false,
-      uploadPath: '/admin/upload',
+      uploadPath,
       adminInfo: {
         username: '',
         password: '',
