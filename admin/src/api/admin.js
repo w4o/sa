@@ -10,14 +10,14 @@ export function getList(params) {
 
 export function getInfo(id) {
   return request({
-    url: '/admin/read/' + id,
+    url: '/admin/' + id,
     method: 'get'
   })
 }
 
 export function createAdmin(data) {
   return request({
-    url: '/admin/create',
+    url: '/admin',
     method: 'put',
     data: data
   })
@@ -25,7 +25,7 @@ export function createAdmin(data) {
 
 export function updateAdmin(data) {
   return request({
-    url: '/admin/update/' + data.id,
+    url: '/admin/' + data.id,
     method: 'post',
     data: data
   })
@@ -33,7 +33,7 @@ export function updateAdmin(data) {
 
 export function deleteAdmin(id) {
   return request({
-    url: '/admin/delete/' + id,
+    url: '/admin/' + id,
     method: 'delete'
   })
 }
