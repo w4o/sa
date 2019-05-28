@@ -113,7 +113,40 @@
 					"name": "admin",
 					"item": [
 						{
-							"name": "/admin/read/{id}",
+							"name": "获取管理员列表",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Token",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTkwMTA5NTk0NzUsImV4cCI6MTU1OTYxNTc1OX0.rhMMYDbJZmNxbkX-CNTaPIr4h5dBrTdM4rMAnMxLLnVJIwPhoQ-XyVOGKF6UM2zZtr4HlmnSMqmPsqIftmUtDA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{HOST}}:{{PORT}}/admin/list",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"port": "{{PORT}}",
+									"path": [
+										"admin",
+										"list"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "获取指定管理员信息",
 							"request": {
 								"method": "GET",
 								"header": [
@@ -124,7 +157,7 @@
 									}
 								],
 								"url": {
-									"raw": "http://{{HOST}}:{{PORT}}/admin/read/1",
+									"raw": "http://{{HOST}}:{{PORT}}/admin/1",
 									"protocol": "http",
 									"host": [
 										"{{HOST}}"
@@ -132,7 +165,6 @@
 									"port": "{{PORT}}",
 									"path": [
 										"admin",
-										"read",
 										"1"
 									]
 								}
@@ -140,7 +172,7 @@
 							"response": []
 						},
 						{
-							"name": "/admin/update/{id}",
+							"name": "更新指定管理员信息",
 							"request": {
 								"method": "POST",
 								"header": [
@@ -161,7 +193,7 @@
 									"raw": "{\n\t\"avatar\":\"https://avatars0.githubusercontent.com/u/13061300?s=400\",\n\t\"remark\":\"Admin 备注信息1\"\n}"
 								},
 								"url": {
-									"raw": "http://{{HOST}}:{{PORT}}/admin/update/1",
+									"raw": "http://{{HOST}}:{{PORT}}/admin/1",
 									"protocol": "http",
 									"host": [
 										"{{HOST}}"
@@ -169,7 +201,6 @@
 									"port": "{{PORT}}",
 									"path": [
 										"admin",
-										"update",
 										"1"
 									]
 								}
@@ -177,7 +208,7 @@
 							"response": []
 						},
 						{
-							"name": "/admin/create",
+							"name": "创建管理员信息",
 							"request": {
 								"method": "PUT",
 								"header": [
@@ -198,22 +229,21 @@
 									"raw": "{\n\t\"username\":\"test3\",\n\t\"password\":\"123456\",\n\t\"remark\":\"备注信息\"\n}"
 								},
 								"url": {
-									"raw": "http://{{HOST}}:{{PORT}}/admin/create",
+									"raw": "http://{{HOST}}:{{PORT}}/admin",
 									"protocol": "http",
 									"host": [
 										"{{HOST}}"
 									],
 									"port": "{{PORT}}",
 									"path": [
-										"admin",
-										"create"
+										"admin"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "/admin/delete/{id}",
+							"name": "删除指定管理员",
 							"request": {
 								"method": "DELETE",
 								"header": [
@@ -224,7 +254,7 @@
 									}
 								],
 								"url": {
-									"raw": "http://{{HOST}}:{{PORT}}/admin/delete/2",
+									"raw": "http://{{HOST}}:{{PORT}}/admin/2",
 									"protocol": "http",
 									"host": [
 										"{{HOST}}"
@@ -232,7 +262,6 @@
 									"port": "{{PORT}}",
 									"path": [
 										"admin",
-										"delete",
 										"2"
 									]
 								}
@@ -288,13 +317,13 @@
 					"name": "role",
 					"item": [
 						{
-							"name": "/role/list",
+							"name": "获取角色列表",
 							"request": {
 								"method": "GET",
 								"header": [
 									{
 										"key": "X-Token",
-										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTgzMzk2Mzc2MDksImV4cCI6MTU1ODk0NDQzN30.5RyObrrUDP84HizmKIgefs1PaBNvnOkzPfj_o2ZoAogiNch0exyCSWFUSxZvBxLMPP1U9uuzK6DcEU8tcbqBgA",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTkwMTA5NTk0NzUsImV4cCI6MTU1OTYxNTc1OX0.rhMMYDbJZmNxbkX-CNTaPIr4h5dBrTdM4rMAnMxLLnVJIwPhoQ-XyVOGKF6UM2zZtr4HlmnSMqmPsqIftmUtDA",
 										"type": "text"
 									}
 								],
@@ -314,7 +343,7 @@
 							"response": []
 						},
 						{
-							"name": "/role/{id}/permissions",
+							"name": "获取指定角色权限",
 							"request": {
 								"method": "GET",
 								"header": [
@@ -335,6 +364,103 @@
 										"role",
 										"2",
 										"permissions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "创建角色信息",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Token",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTkwMTA5NTk0NzUsImV4cCI6MTU1OTYxNTc1OX0.rhMMYDbJZmNxbkX-CNTaPIr4h5dBrTdM4rMAnMxLLnVJIwPhoQ-XyVOGKF6UM2zZtr4HlmnSMqmPsqIftmUtDA",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\":\"role test2\",\n\t\"description\":\"角色说明\"\n}"
+								},
+								"url": {
+									"raw": "http://{{HOST}}:{{PORT}}/role",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"port": "{{PORT}}",
+									"path": [
+										"role"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "更新指定角色信息",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Token",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTkwMTA5NTk0NzUsImV4cCI6MTU1OTYxNTc1OX0.rhMMYDbJZmNxbkX-CNTaPIr4h5dBrTdM4rMAnMxLLnVJIwPhoQ-XyVOGKF6UM2zZtr4HlmnSMqmPsqIftmUtDA",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\":\"role test1\",\n\t\"description\":\"role test1 description 1111\"\n}"
+								},
+								"url": {
+									"raw": "http://{{HOST}}:{{PORT}}/role/2",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"port": "{{PORT}}",
+									"path": [
+										"role",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "删除指定角色信息",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "X-Token",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTkwMTA5NTk0NzUsImV4cCI6MTU1OTYxNTc1OX0.rhMMYDbJZmNxbkX-CNTaPIr4h5dBrTdM4rMAnMxLLnVJIwPhoQ-XyVOGKF6UM2zZtr4HlmnSMqmPsqIftmUtDA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{HOST}}:{{PORT}}/role/2",
+									"protocol": "http",
+									"host": [
+										"{{HOST}}"
+									],
+									"port": "{{PORT}}",
+									"path": [
+										"role",
+										"2"
 									]
 								}
 							},
@@ -417,19 +543,19 @@
 	],
 	"variable": [
 		{
-			"id": "93dd36aa-be60-4a8e-b3a4-8e2af33a7e36",
+			"id": "e61e78d5-e110-43f8-a15f-bd00e0b592ee",
 			"key": "HOST",
 			"value": "localhost",
 			"type": "string"
 		},
 		{
-			"id": "ae31eb81-983a-49b0-a996-47bff5fb321a",
+			"id": "7c88bc8a-1b83-42b0-a4c6-84a0c58d47c5",
 			"key": "PORT",
 			"value": "8081",
 			"type": "string"
 		},
 		{
-			"id": "cdce2f29-fb9a-4f59-a636-ebab6f4f674b",
+			"id": "1d1bbf57-a8ba-4433-807a-5faead504c36",
 			"key": "TOKEN",
 			"value": "abc",
 			"type": "string"

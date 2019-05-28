@@ -10,7 +10,7 @@ export function getList(params) {
 
 export function createRole(data) {
   return request({
-    url: '/role/create',
+    url: '/role',
     method: 'put',
     data: data
   })
@@ -18,7 +18,7 @@ export function createRole(data) {
 
 export function updateRole(data) {
   return request({
-    url: '/role/update/' + data.id,
+    url: '/role/' + data.id,
     method: 'post',
     data: data
   })
@@ -26,7 +26,7 @@ export function updateRole(data) {
 
 export function deleteRole(id) {
   return request({
-    url: '/role/delete/' + id,
+    url: '/role/' + id,
     method: 'delete'
   })
 }

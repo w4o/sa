@@ -41,7 +41,7 @@ public class AdminController {
      * 管理员信息
      */
     @ApiOperation("获取指定管理员信息")
-    @GetMapping("/read/{id}")
+    @GetMapping("/{id}")
     public CommonResult read(@PathVariable("id") Integer id) {
         return new CommonResult().ok(adminService.info(id));
     }
@@ -50,7 +50,7 @@ public class AdminController {
      * 创建管理员
      */
     @ApiOperation("创建管理员信息")
-    @PutMapping("/create")
+    @PutMapping
     public CommonResult create(@RequestBody CreateAdminParam createAdminParam) {
         Admin admin = adminService.create(createAdminParam);
         return new CommonResult().ok(admin);
@@ -60,7 +60,7 @@ public class AdminController {
      * 更新管理员
      */
     @ApiOperation("更新指定管理员信息")
-    @PostMapping("/update/{id}")
+    @PostMapping("/{id}")
     public CommonResult update(@PathVariable("id") Integer id,
                                @RequestBody UpdateAdminParam updateAdminParam) {
         Admin admin = adminService.updateById(id, updateAdminParam);
@@ -71,7 +71,7 @@ public class AdminController {
      * 删除管理员
      */
     @ApiOperation("指定指定管理员")
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public CommonResult delete(@PathVariable("id") Integer id) {
         adminService.deleteById(id);
         return new CommonResult().ok();

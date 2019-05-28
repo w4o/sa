@@ -40,7 +40,7 @@ public class RoleController {
      * 创建角色
      */
     @ApiOperation("创建角色")
-    @PutMapping("/create")
+    @PutMapping
     public CommonResult create(@RequestBody CreateRoleParam createRoleParam) {
         return new CommonResult().ok(roleService.create(createRoleParam));
     }
@@ -49,7 +49,7 @@ public class RoleController {
      * 更新角色信息
      */
     @ApiOperation("更新角色信息")
-    @PostMapping("/update/{id}")
+    @PostMapping("/{id}")
     public CommonResult update(@PathVariable(value = "id") Integer id,
                                @RequestBody UpdateRoleParam updateRoleParam) {
         return new CommonResult().ok(roleService.updateById(id, updateRoleParam));
@@ -59,7 +59,7 @@ public class RoleController {
      * 删除角色信息
      */
     @ApiOperation("删除角色信息")
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public CommonResult delete(@PathVariable(value = "id") Integer id) {
         return new CommonResult().ok(roleService.deleteById(id));
     }
