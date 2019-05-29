@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getList(params) {
   return request({
-    url: '/admin/list',
+    url: '/admin',
     method: 'get',
     params
   })
@@ -18,7 +18,7 @@ export function getInfo(id) {
 export function createAdmin(data) {
   return request({
     url: '/admin',
-    method: 'put',
+    method: 'post',
     data: data
   })
 }
@@ -26,7 +26,7 @@ export function createAdmin(data) {
 export function updateAdmin(data) {
   return request({
     url: '/admin/' + data.id,
-    method: 'post',
+    method: 'put',
     data: data
   })
 }
