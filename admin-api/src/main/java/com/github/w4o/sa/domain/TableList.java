@@ -6,7 +6,6 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -16,7 +15,6 @@ import java.util.Date;
  * @date 2019-05-15
  */
 @Entity
-@Table(name = "table_list")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class TableList extends BaseEntity {

@@ -6,7 +6,6 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -14,7 +13,6 @@ import java.util.Date;
  * @date 2019-05-17
  */
 @Entity
-@Table(name = "admin_log")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class AdminLog extends BaseEntity {

@@ -6,14 +6,12 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  * @author frank
  * @date 2019-05-20
  */
 @Entity
-@Table(name = "role_permission_relation")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class RolePermissionRelation extends BaseEntity {
