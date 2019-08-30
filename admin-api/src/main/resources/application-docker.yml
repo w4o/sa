@@ -1,0 +1,67 @@
+sa:
+  version: @project.version@
+  jwt:
+    header: X-Token
+    secret: 4f1aaeeb0a76ac6033c5e61d8b5e3e6f
+    expire: 604800
+  swagger2:
+    enabled: true
+  # 对象存储配置
+  storage:
+    # 当前工作的对象存储模式，分别是local、aliyun、tencent、qiniu
+    active: local
+    # 本地对象存储配置信息
+    local:
+      storagePath: /Users/frank/Desktop/storage/
+      # 图片访问url
+      address: http://localhost:8081/static/
+    # 阿里云对象存储配置信息
+    aliyun:
+      endpoint: oss-cn-shenzhen.aliyuncs.com
+      accessKeyId: 111111
+      accessKeySecret: xxxxxx
+      bucketName: bucketName
+    # 腾讯对象存储配置信息
+    # 请参考 https://cloud.tencent.com/document/product/436/6249
+    tencent:
+      secretId: 111111
+      secretKey: xxxxxx
+      region: xxxxxx
+      bucketName: bucketName
+    # 七牛云对象存储配置信息
+    qiniu:
+      endpoint: http://pd5cb6ulu.bkt.clouddn.com
+      accessKey: 111111
+      secretKey: xxxxxx
+      bucketName: bucketName
+spring:
+  messages:
+    encoding: UTF-8
+  jpa:
+    show-sql: true
+    open-in-view: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://docker.for.mac.localhost:3306/sa?characterEncoding=utf-8
+    username: root
+    password: root
+  redis:
+    database: 1
+    host: docker.for.mac.localhost
+    port: 6379
+    password:
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+    timeout: 10000
+server:
+  port: 8081
+logging:
+  level:
+    root:  info
+    org.springframework:  info
+    com.github.w4o.ticket:  info
+    org.hibernate.type.descriptor.sql.BasicBinder: info
