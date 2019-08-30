@@ -6,6 +6,7 @@ import com.github.w4o.sa.dto.CreateAdminParam;
 import com.github.w4o.sa.dto.UpdateAdminParam;
 import com.github.w4o.sa.repository.AdminRepository;
 import com.github.w4o.sa.service.AdminService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,7 +19,6 @@ import org.springframework.util.StringUtils;
 
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,10 +56,7 @@ public class AdminServiceImpl implements AdminService {
         Admin admin = adminRepository.findById(id)
                 .orElseThrow(IllegalArgumentException::new);
         AdminReadResult result = new AdminReadResult();
-        result.setId(admin.getId());
-        result.setAvatar(admin.getAvatar());
-        result.setUsername(admin.getUsername());
-        result.setRemark(admin.getRemark());
+        BeanUtils.copyProperties(admin, result);
         return result;
     }
 
@@ -74,10 +71,8 @@ public class AdminServiceImpl implements AdminService {
         String encodedPassword = encoder.encode(rawPassword);
 
         Admin admin = new Admin();
+        BeanUtils.copyProperties(createAdminParam, admin);
         admin.preInsert();
-        admin.setAvatar(createAdminParam.getAvatar());
-        admin.setUsername(createAdminParam.getUsername());
-        admin.setRemark(createAdminParam.getRemark());
         admin.setPassword(encodedPassword);
 
         return adminRepository.save(admin);
@@ -87,10 +82,8 @@ public class AdminServiceImpl implements AdminService {
     public Admin updateById(Integer id, UpdateAdminParam updateAdminParam) {
         Admin admin = adminRepository.findById(id)
                 .orElseThrow(IllegalArgumentException::new);
-
-        admin.setRemark(updateAdminParam.getRemark());
-        admin.setAvatar(updateAdminParam.getAvatar());
-        admin.setUpdateTime(new Date());
+        admin.preUpdate();
+        BeanUtils.copyProperties(updateAdminParam, admin);
         adminRepository.save(admin);
         return admin;
     }
@@ -99,8 +92,7 @@ public class AdminServiceImpl implements AdminService {
     public void deleteById(Integer id) {
         Admin admin = adminRepository.findById(id)
                 .orElseThrow(IllegalArgumentException::new);
-
-        admin.setDeleted(1);
+        admin.preDelete();
         adminRepository.save(admin);
     }
 }

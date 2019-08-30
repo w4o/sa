@@ -32,7 +32,7 @@ public class TableController {
      * table 列表
      */
     @ApiOperation("获取Table列表")
-    @GetMapping("/list")
+    @GetMapping
     public CommonResult list(@RequestParam(value = "title", required = false) String title,
                              @RequestParam(value = "page", defaultValue = "1") Integer page,
                              @RequestParam(value = "size", defaultValue = "5") Integer size) {

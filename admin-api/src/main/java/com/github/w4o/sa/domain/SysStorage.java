@@ -6,14 +6,12 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  * @author frank
  * @date 2019-05-27
  */
 @Entity
-@Table(name = "sys_storage")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class SysStorage extends BaseDataEntity {

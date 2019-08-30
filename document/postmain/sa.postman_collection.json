@@ -124,15 +124,14 @@
 									}
 								],
 								"url": {
-									"raw": "http://{{HOST}}:{{PORT}}/admin/list",
+									"raw": "http://{{HOST}}:{{PORT}}/admin",
 									"protocol": "http",
 									"host": [
 										"{{HOST}}"
 									],
 									"port": "{{PORT}}",
 									"path": [
-										"admin",
-										"list"
+										"admin"
 									],
 									"query": [
 										{
@@ -174,7 +173,7 @@
 						{
 							"name": "更新指定管理员信息",
 							"request": {
-								"method": "POST",
+								"method": "PUT",
 								"header": [
 									{
 										"key": "X-Token",
@@ -210,11 +209,11 @@
 						{
 							"name": "创建管理员信息",
 							"request": {
-								"method": "PUT",
+								"method": "POST",
 								"header": [
 									{
 										"key": "X-Token",
-										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTgwNzQ2MTUyMjcsImV4cCI6MTU1ODY3OTQxNX0.ubjsOQdLTfBydnELv4BrxHCl52ge64Brtj6qPHNNLnDX1piJVDHZW2vX-vHxDbyzNunLQ_O9z7iIjRipKVlW7g",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTkwOTM0OTk2NDgsImV4cCI6MTU1OTY5ODI5OX0.kCHwnTkSNnf-yk4elSkMusXx2cI2yhhPBQYULlCEJQ7hX-P54ymojY3iK9ZTIVv9gM8tT3TB7ZbHbSh3WGNAOA",
 										"type": "text"
 									},
 									{
@@ -226,7 +225,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"username\":\"test3\",\n\t\"password\":\"123456\",\n\t\"remark\":\"备注信息\"\n}"
+									"raw": "{\n\t\"username\":\"test6\",\n\t\"password\":\"123456\",\n\t\"remark\":\"备注信息\"\n}"
 								},
 								"url": {
 									"raw": "http://{{HOST}}:{{PORT}}/admin",
@@ -286,15 +285,14 @@
 									}
 								],
 								"url": {
-									"raw": "http://{{HOST}}:{{PORT}}/log/list?page=1&size=10",
+									"raw": "http://{{HOST}}:{{PORT}}/log?page=1&size=10",
 									"protocol": "http",
 									"host": [
 										"{{HOST}}"
 									],
 									"port": "{{PORT}}",
 									"path": [
-										"log",
-										"list"
+										"log"
 									],
 									"query": [
 										{
@@ -328,15 +326,14 @@
 									}
 								],
 								"url": {
-									"raw": "http://{{HOST}}:{{PORT}}/role/list",
+									"raw": "http://{{HOST}}:{{PORT}}/role",
 									"protocol": "http",
 									"host": [
 										"{{HOST}}"
 									],
 									"port": "{{PORT}}",
 									"path": [
-										"role",
-										"list"
+										"role"
 									]
 								}
 							},
@@ -372,7 +369,7 @@
 						{
 							"name": "创建角色信息",
 							"request": {
-								"method": "PUT",
+								"method": "POST",
 								"header": [
 									{
 										"key": "X-Token",
@@ -407,7 +404,7 @@
 						{
 							"name": "更新指定角色信息",
 							"request": {
-								"method": "POST",
+								"method": "PUT",
 								"header": [
 									{
 										"key": "X-Token",
@@ -484,20 +481,19 @@
 								"header": [
 									{
 										"key": "X-Token",
-										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTc5MDc5MDc0MDIsImV4cCI6MTU1ODUxMjcwN30.4liVwPqixmD4cli4RvzohsLvGjlxz8jwtm9YhZoYXBsa_8NVM8pPl_avJ1n2HrwBzvTdKxTmGWH2IqMYttsyXQ",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1NTkwOTM4MDE2NjAsImV4cCI6MTU1OTY5ODYwMX0.FDyCCVmqWRecES_i3_HJVBLo1J7-2hSj2aZ7F0LaLbI1e0vK4FGcfN1cjXUGmX9FEbETMZ1oqPwZNP8Gmq5L-w",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "http://{{HOST}}:{{PORT}}/table/list?page=3&size=5",
+									"raw": "http://{{HOST}}:{{PORT}}/table?page=3&size=5",
 									"protocol": "http",
 									"host": [
 										"{{HOST}}"
 									],
 									"port": "{{PORT}}",
 									"path": [
-										"table",
-										"list"
+										"table"
 									],
 									"query": [
 										{
@@ -543,19 +539,19 @@
 	],
 	"variable": [
 		{
-			"id": "e61e78d5-e110-43f8-a15f-bd00e0b592ee",
+			"id": "95d353cc-a634-404f-8738-15f23449a970",
 			"key": "HOST",
 			"value": "localhost",
 			"type": "string"
 		},
 		{
-			"id": "7c88bc8a-1b83-42b0-a4c6-84a0c58d47c5",
+			"id": "23ad8ec6-a92b-4ee7-ac9f-8ae49d4ed068",
 			"key": "PORT",
 			"value": "8081",
 			"type": "string"
 		},
 		{
-			"id": "1d1bbf57-a8ba-4433-807a-5faead504c36",
+			"id": "5daa1767-c825-4d26-90d1-a7a36362be73",
 			"key": "TOKEN",
 			"value": "abc",
 			"type": "string"

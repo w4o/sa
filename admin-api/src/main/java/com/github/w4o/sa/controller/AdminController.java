@@ -30,7 +30,7 @@ public class AdminController {
      * 管理员列表
      */
     @ApiOperation("获取管理员列表")
-    @GetMapping("/list")
+    @GetMapping
     public CommonResult list(@RequestParam(value = "username", required = false) String username,
                              @RequestParam(value = "page", defaultValue = "1") Integer page,
                              @RequestParam(value = "size", defaultValue = "5") Integer size) {
@@ -50,7 +50,7 @@ public class AdminController {
      * 创建管理员
      */
     @ApiOperation("创建管理员信息")
-    @PutMapping
+    @PostMapping
     public CommonResult create(@RequestBody CreateAdminParam createAdminParam) {
         Admin admin = adminService.create(createAdminParam);
         return new CommonResult().ok(admin);
@@ -60,7 +60,7 @@ public class AdminController {
      * 更新管理员
      */
     @ApiOperation("更新指定管理员信息")
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public CommonResult update(@PathVariable("id") Integer id,
                                @RequestBody UpdateAdminParam updateAdminParam) {
         Admin admin = adminService.updateById(id, updateAdminParam);

@@ -29,7 +29,7 @@ public class RoleController {
      * 角色列表
      */
     @ApiOperation("获取角色列表")
-    @GetMapping("/list")
+    @GetMapping
     public CommonResult list(@RequestParam(value = "name", required = false) String name,
                              @RequestParam(value = "page", defaultValue = "1") Integer page,
                              @RequestParam(value = "size", defaultValue = "5") Integer size) {
@@ -40,7 +40,7 @@ public class RoleController {
      * 创建角色
      */
     @ApiOperation("创建角色")
-    @PutMapping
+    @PostMapping
     public CommonResult create(@RequestBody CreateRoleParam createRoleParam) {
         return new CommonResult().ok(roleService.create(createRoleParam));
     }
@@ -49,7 +49,7 @@ public class RoleController {
      * 更新角色信息
      */
     @ApiOperation("更新角色信息")
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public CommonResult update(@PathVariable(value = "id") Integer id,
                                @RequestBody UpdateRoleParam updateRoleParam) {
         return new CommonResult().ok(roleService.updateById(id, updateRoleParam));
@@ -81,7 +81,7 @@ public class RoleController {
      * @param id 角色id
      */
     @ApiOperation("更新角色权限")
-    @PostMapping("/{id}/permissions")
+    @PutMapping("/{id}/permissions")
     public CommonResult updatePermissions(@PathVariable(value = "id") Integer id,
                                           @RequestBody Integer[] permissions) {
         roleService.updatePermissions(id, permissions);

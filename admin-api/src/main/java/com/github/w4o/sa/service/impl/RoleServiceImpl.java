@@ -12,6 +12,7 @@ import com.github.w4o.sa.repository.RoleRepository;
 import com.github.w4o.sa.service.RoleService;
 import com.github.w4o.sa.vo.PermissionVo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,7 +23,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.criteria.Predicate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author frank
@@ -68,8 +72,7 @@ public class RoleServiceImpl implements RoleService {
 
         Role role = new Role();
         role.preInsert();
-        role.setName(createRoleParam.getName());
-        role.setDescription(createRoleParam.getDescription());
+        BeanUtils.copyProperties(createRoleParam, role);
         roleRepository.save(role);
         return role;
     }
@@ -84,11 +87,8 @@ public class RoleServiceImpl implements RoleService {
             Role existing = roleRepository.findByName(updateRoleParam.getName());
             Assert.isNull(existing, "角色已存在: " + updateRoleParam.getName());
         }
-
-        role.setName(updateRoleParam.getName());
-        role.setDescription(updateRoleParam.getDescription());
-        role.setUpdateTime(new Date());
-
+        role.preUpdate();
+        BeanUtils.copyProperties(updateRoleParam, role);
         roleRepository.save(role);
         return role;
     }
@@ -97,9 +97,7 @@ public class RoleServiceImpl implements RoleService {
     public Role deleteById(Integer id) {
         Role role = roleRepository.findById(id)
                 .orElseThrow(IllegalArgumentException::new);
-
-        role.setDeleted(1);
-        role.setUpdateTime(new Date());
+        role.preDelete();
         roleRepository.save(role);
         return role;
     }

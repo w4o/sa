@@ -30,7 +30,7 @@ public class AdminLogController {
      * 日志列表
      */
     @ApiOperation("获取日志列表")
-    @GetMapping("/list")
+    @GetMapping
     public CommonResult list(@RequestParam(value = "page", defaultValue = "1") Integer page,
                              @RequestParam(value = "size", defaultValue = "5") Integer size) {
         return new CommonResult().okPage(adminLogService.list(page, size));

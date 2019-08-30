@@ -3,6 +3,7 @@ package com.github.w4o.sa.commons;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author frank
@@ -10,7 +11,7 @@ import javax.persistence.*;
  */
 @MappedSuperclass
 @Data
-public abstract class BaseEntity {
+public abstract class BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
