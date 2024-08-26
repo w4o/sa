@@ -14,7 +14,7 @@
         <java.version>1.8</java.version>
         <lombok.version>1.18.6</lombok.version>
         <jjwt.version>0.9.0</jjwt.version>
-        <swagger2.version>2.9.2</swagger2.version>
+        <swagger2.version>2.10.0</swagger2.version>
         <qcloud-cos.version>5.4.4</qcloud-cos.version>
         <aliyun-oss.version>2.5.0</aliyun-oss.version>
         <qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
